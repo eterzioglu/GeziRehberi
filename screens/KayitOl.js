@@ -26,26 +26,26 @@ const KayitOl =props=> {
                     style={styles.inputBox}
                     onChangeText={username => setUsername(username)}
                     defaultValue={username}
-                    placeholder='Kullanıcı Adı'
+                    placeholder='User Name'
                 />
                 <TextInput
                     style={styles.inputBox}
                     onChangeText={email => setEmail(email)}
                     defaultValue={email}
-                    placeholder='Email'
+                    placeholder='E-mail'
                     autoCapitalize='none'
                 />
                 <TextInput
                     style={styles.inputBox}
                     onChangeText={password => setPassword(password)}
                     defaultValue={password}
-                    placeholder='Şifre'
+                    placeholder='Password'
                     secureTextEntry={true}
                 />
                 <TouchableOpacity 
                 style={styles.button}
                 onPress={handleSignUp}>
-                    <Text style={styles.buttonText}>Kayıt Ol</Text>
+                    <Text style={styles.buttonText}>Sign Up</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -55,7 +55,7 @@ const KayitOl =props=> {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#9ad3bc',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -63,8 +63,8 @@ const styles = StyleSheet.create({
         width: '85%',
         margin: 10,
         padding: 15,
-        fontSize: 16,
-        borderColor: '#d3d3d3',
+        fontSize: 15,
+        borderColor: '#fff',
         borderBottomWidth: 1,
         textAlign: 'center'
     },
@@ -73,8 +73,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         paddingVertical: 5,
         alignItems: 'center',
-        backgroundColor: '#FFA611',
-        borderColor: '#FFA611',
+        backgroundColor: '#db6400',
+        borderColor: '#db6400',
         borderWidth: 1,
         borderRadius: 5,
         width: 200

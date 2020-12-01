@@ -27,9 +27,8 @@ const styles = StyleSheet.create({
   },
   textStyle:{
     color : 'red',
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: "bold",
-    padding:'20%'
   },
   textbuttonStyle:{
     color : 'red',
@@ -39,7 +38,4 @@ const styles = StyleSheet.create({
     paddingTop:'5%'
   }
 });
-
-
-
 export default Giris

@@ -22,7 +22,7 @@ const GirisYap =props=>  {
                     style={styles.inputBox}
                     onChangeText={email => setEmail(email)}
                     defaultValue={email}
-                    placeholder='Email'
+                    placeholder='E-mail'
                     autoCapitalize='none'
                 />
                 <TextInput
@@ -35,19 +35,19 @@ const GirisYap =props=>  {
 
                  <TouchableOpacity 
                  onPress={() => navigation.navigate('SifremiUnuttum')} >
-                    <Text style={styles.text}>Şifremi Unuttum?</Text>
+                    <Text style={styles.text}>Forgot Password?</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity 
                 style={styles.button}
                 onPress={() => navigation.navigate('Anasayfa')}>
-                    <Text style={styles.buttonText}>Giriş Yap</Text>
+                    <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity 
                  onPress={() => navigation.navigate('KayitOl')}
                  >
-                     <Text style={styles.text}>Bir Hasabın Yok Mu? Kayıt Ol</Text>
+                     <Text style={styles.text}>Don't have an account?Create One.</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -57,7 +57,7 @@ const GirisYap =props=>  {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#9ad3bc',
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         margin: 10,
         padding: 15,
         fontSize: 16,
-        borderColor: '#d3d3d3',
+        borderColor: '#fff',
         borderBottomWidth: 1,
         textAlign: 'center'
     },
@@ -75,8 +75,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         paddingVertical: 5,
         alignItems: 'center',
-        backgroundColor: '#F6820D',
-        borderColor: '#F6820D',
+        backgroundColor: '#db6400',
+        borderColor: '#db6400',
         borderWidth: 1,
         borderRadius: 5,
         width: 200
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     text:{
-    color:'#F6820D',
+    color:'#db6400',
     fontSize:20
     },
 })
