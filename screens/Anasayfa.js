@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 
-import TabNavigator from '../screens/TabNavigator';
+import TabNavigator from '../navigation/TabNavigator';
 
 const Giris =props=> {
     
