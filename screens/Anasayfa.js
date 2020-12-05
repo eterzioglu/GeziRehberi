@@ -2,31 +2,23 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 
+import TabNavigator from '../screens/TabNavigator';
+
 const Giris =props=> {
     
   return (
     <View style={styles.container}>
-      <Text style = {styles.textStyle}>Ana sayfaya hoşgeldiniz</Text>
-      <StatusBar style="auto" />
-    </View>
+        <TabNavigator style={styles.feed} />
+      </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#9ad3bc',
-    alignItems: 'center',
-    justifyContent: 'center',
- 
+    backgroundColor: '#fff',
   },
-  textStyle:{
-    color : 'red',
-    fontSize: 40,
-    fontWeight: "bold"
+  feed: {
+    flex: 1,
   },
-
 });
-
-
-
 export default Giris

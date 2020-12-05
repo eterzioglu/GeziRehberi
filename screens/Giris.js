@@ -9,10 +9,10 @@ const Giris =props=> {
       <Text style = {styles.textStyle}>Gezi Rehberine Hoşgeldiniz</Text>
       <Text
       style = {styles.textbuttonStyle}
-      onPress={() => navigation.navigate('GirisYap')}>Giriş Yap</Text>
+      onPress={() => navigation.navigate('GirisYap')}>Sign In</Text>
       <Text
       style = {styles.textbuttonStyle}
-      onPress={() => navigation.navigate('KayitOl')}>Kayıt Ol</Text>
+      onPress={() => navigation.navigate('KayitOl')}>Sign Up</Text>
       <StatusBar style="auto" />
     </View>
   );
