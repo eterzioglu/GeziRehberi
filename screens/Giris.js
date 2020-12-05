@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
  
   },
   textStyle:{
-    color : 'red',
+    color : 'blue',
     fontSize: 30,
     fontWeight: "bold",
   },
