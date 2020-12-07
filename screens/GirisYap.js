@@ -12,7 +12,7 @@ const GirisYap =props=>  {
   
         Firebase.auth()
             .signInWithEmailAndPassword(email, password)
-            .then(() => navigation.navigate('Anasayfa'))
+            .then(() => navigation.navigate('Anasayfa',{ c: email}))
             .catch(error => alert(error))
     }
   
@@ -40,7 +40,7 @@ const GirisYap =props=>  {
 
                 <TouchableOpacity 
                 style={styles.button}
-                onPress={() => navigation.navigate('Anasayfa')}>
+                onPress={handleLogin}>
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
 

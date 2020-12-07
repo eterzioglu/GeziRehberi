@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native'
-
 import Firebase from '../config/Firebase';
 import { useState } from 'react'
 
@@ -10,12 +9,16 @@ const KayitOl =props=> {
     const [username, setUsername] = useState('');
     const[email,setEmail]=useState('');
     const [password, setPassword] = useState('');
+    const db = Firebase.firestore();
 
 
     handleSignUp = () => {
+        db.collection("Users").doc(email).set({
+           Username:username
+           })
         Firebase.auth()
             .createUserWithEmailAndPassword(email, password)
-            .then(() => navigation.navigate('Anasayfa'))
+            .then(() => navigation.navigate('Anasayfa',{ caption: email}))
             .catch(error => console.log(error))
     }
 
