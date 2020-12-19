@@ -7,7 +7,7 @@ import PlaceList from "../utils/PlaceList";
 
 class Natural extends Component {
   static navigationOptions = props => {
-    const placeName = props.navigation.getParam("Natural Places");
+    const placeName = 'restaurant'
     return { headerTitle: placeName.toUpperCase() };
   };
   constructor(props) {
@@ -17,15 +17,13 @@ class Natural extends Component {
       long: null,
       places: [],
       isLoading: false,
-      placeType: "restaurant"
+      placeType: this.placeType
     };
   }
   componentDidMount() {
     console.log(this.props);
-    const { navigation } = this.props;
-    const placeType = navigation.getParam("placeType");
+    const placeType = 'beer';
     this.setState({ placeType: placeType });
-
     this.getCurrentLocation();
   }
 
