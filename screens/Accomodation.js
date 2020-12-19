@@ -26,15 +26,13 @@ class Accomodation extends Component {
 
     }
     _findMe = async () => {
-
-
         this.watchID = await navigator.geolocation.watchPosition(
             ({ coords }) => {
                 const { latitude, longitude } = coords
                 this.setState({
                     region: {
-                        latitude,
-                        longitude,
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
                         latitudeDelta: LATITUDE_DELTA,
                         longitudeDelta: LONGITUDE_DELTA,
                     }

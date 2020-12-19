@@ -4,8 +4,8 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native';
 
 let { width, height } = Dimensions.get('window');
 
-const LATITUDE = 40.78825;
-const LONGITUDE = 30.0;
+const LATITUDE = 45.78825;
+const LONGITUDE = 26.0;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = 0.0421;
 
@@ -26,15 +26,13 @@ class Natural extends Component {
 
     }
     _findMe = async () => {
-
-
         this.watchID = await navigator.geolocation.watchPosition(
             ({ coords }) => {
                 const { latitude, longitude } = coords
                 this.setState({
                     region: {
-                        latitude,
-                        longitude,
+                        latitude: position.coords.latitude,
+                        longitude: position.coords.longitude,
                         latitudeDelta: LATITUDE_DELTA,
                         longitudeDelta: LONGITUDE_DELTA,
                     }
