@@ -4,13 +4,14 @@ import {
   TouchableOpacity,
   View,
   ActivityIndicator,
+  StyleSheet
 } from "react-native";
 import { ListItem, Text } from "react-native-elements";
 import { Container, Content } from "native-base";
 import { GOOGLE_API_KEY } from "react-native-dotenv";
 
 //Components
-import RenderStarReview from "../../components/Review/ReviewStars";
+//mport RenderStarReview from "../../components/Review/ReviewStars"; 45   <RenderStarReview stars={item.rating} />
 
 class PlaceList extends Component {
   render() {
@@ -42,7 +43,7 @@ class PlaceList extends Component {
                       item.rating && (
                         <View>
                           <View style={styles.startReviewsContainer}>
-                            <RenderStarReview stars={item.rating} />
+                          
                             <Text>{item.rating.toFixed(1)}</Text>
                           </View>
                           <View>
