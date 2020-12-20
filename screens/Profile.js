@@ -9,6 +9,10 @@ const Profile =props=> {
     var email=route.params.caption
     var Email=route.params.c
     var user=[];
+    
+    var Flowers = [];
+    
+    const[cicekler, setcicekler]=useState([])
     const[username, setUsername]=useState([])
     const db = Firebase.firestore();
 
@@ -22,13 +26,25 @@ const Profile =props=> {
           });
         setUsername(user)
       });
-    },[])
 
+
+      db.collection("deneme").where("Cicek", "array-contains", "papatya")
+      .onSnapshot(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+              Flowers.push(doc.data().Cicek);
+          });
+        //  console.log("Current cities in CA: ", Flowers.join(", "));
+      });
+      setcicekler(Flowers)
+      console.log(cicekler.toString()," xxxxxx")
+    },[])
 
 
     return (
       <View style={styles.container}>
         <Text style={styles.text}>{username} Profile</Text>
+        
+        <Text style={styles.text}>{cicekler} xx</Text>
       </View>
     );
 

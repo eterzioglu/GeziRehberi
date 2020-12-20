@@ -1,25 +1,30 @@
 import React from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-native'
+
+import { useRoute } from '@react-navigation/native';
 import Firebase from '../config/Firebase';
 import { useState } from 'react'
+import { StackActions } from '@react-navigation/native';
 
-const KayitOl =props=> {
+const EkSayfa =props=> {
 
     const {navigation} = props;
-    const [username, setUsername] = useState('');
-    const[email,setEmail]=useState('');
-    const [password, setPassword] = useState('');
+    const [cicek, setcicek] = useState([]);
     const db = Firebase.firestore();
+    const route = useRoute();
+    var email=route.params.caption
 
-
-    handleSignUp = () => {
-        db.collection("Users").doc(email).set({
-           Username:username
-           })
-        Firebase.auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then(() => navigation.navigate('EkSayfa',{ caption: email}))
-            .catch(error => console.log(error))
+    DataEkle = () => {
+        var cityRef = db.collection("deneme").doc(email);
+        var setWithMerge = cityRef.set({
+            cicek:cicek
+    }, { merge: true });  
+    navigation.dispatch(
+        StackActions.replace('Anasayfa', {
+          user: email,
+        })
+      );
+  
     }
 
 
@@ -27,28 +32,14 @@ const KayitOl =props=> {
             <View style={styles.container}>
                 <TextInput
                     style={styles.inputBox}
-                    onChangeText={username => setUsername(username)}
-                    defaultValue={username}
-                    placeholder='User Name'
-                />
-                <TextInput
-                    style={styles.inputBox}
-                    onChangeText={email => setEmail(email)}
-                    defaultValue={email}
-                    placeholder='E-mail'
-                    autoCapitalize='none'
-                />
-                <TextInput
-                    style={styles.inputBox}
-                    onChangeText={password => setPassword(password)}
-                    defaultValue={password}
-                    placeholder='Password'
-                    secureTextEntry={true}
+                    onChangeText={cicek => setcicek(cicek)}
+                    defaultValue={cicek}
+                    placeholder='Flowers Name'
                 />
                 <TouchableOpacity 
                 style={styles.button}
-                onPress={handleSignUp}>
-                    <Text style={styles.buttonText}>Sign Up</Text>
+                onPress={DataEkle}>
+                    <Text style={styles.buttonText}>Save</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -92,4 +83,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default KayitOl
+export default EkSayfa
