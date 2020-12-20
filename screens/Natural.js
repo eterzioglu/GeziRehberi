@@ -7,7 +7,7 @@ import PlaceList from "../utils/PlaceList";
 
 class Natural extends Component {
   static navigationOptions = props => {
-    const placeName = 'restaurant'
+    const placeName = 'Beers'
     return { headerTitle: placeName.toUpperCase() };
   };
   constructor(props) {
@@ -43,6 +43,7 @@ class Natural extends Component {
     const location = `location=${lat},${long}&radius=${radius}`;
     const typeData = `&types=${type}`;
     const api = `&key=${apiKey}`;
+    
     return `${baseUrl}${location}${typeData}${api}`;
   }
 
@@ -50,8 +51,11 @@ class Natural extends Component {
     const { lat, long, placeType } = this.state;
     const markers = [];
     const url = this.getPlacesUrl(lat, long, 1500, placeType, GOOGLE_API_KEY);
+    
+    console.log("aaa",url)
     fetch(url)
-      .then(res => res.json())
+    .then(  console.log("bbbb",url))
+      .then(res => res.json(),console.log("xxxxx",res))
       .then(res => {
         res.results.map((element, index) => {
           const marketObj = {};
@@ -66,13 +70,18 @@ class Natural extends Component {
           };
 
           markers.push(marketObj);
+         
         });
         //mekan listesini düzenlediğimiz kısım..
         this.setState({ places: markers });
-      });
+        
+      }, console.log("ccccc",markers));
+      
   }
 
   render() {
+    
+    console.log("dddd",places)
     const { lat, long, places } = this.state;
     return (
       <View style={styles.container}>

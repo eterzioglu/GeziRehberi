@@ -5,13 +5,13 @@ import 'firebase/firestore';
 
 try {
   firebase.initializeApp({
-    apiKey: "AIzaSyB2kcMA9X8PbpYSplRtTGcSNG642TbU9r0",
-    authDomain: "finans-86728.firebaseapp.com",
-    databaseURL: "https://finans-86728.firebaseio.com",
-    projectId: "finans-86728",
-    storageBucket: "finans-86728.appspot.com",
-    messagingSenderId: "449595094439",
-    appId: "1:449595094439:web:bdfbf9fc8ce5e51c767282"
+    apiKey: "AIzaSyA9fmMAmwwV1d7HDL_YoM8AJ7Z_4vTJ_Qo",
+    authDomain: "finans-a12c9.firebaseapp.com",
+    projectId: "finans-a12c9",
+    storageBucket: "finans-a12c9.appspot.com",
+    messagingSenderId: "785089471567",
+    appId: "1:785089471567:web:3608f067ff7f8cf626363a",
+    measurementId: "G-BYDKNM0NFB"
   })
   } catch (err) {
   // we skip the “already exists” message which is
