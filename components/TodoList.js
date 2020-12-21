@@ -4,7 +4,7 @@ import colors from "./Colors";
 
 export default TodoList = ({ list }) => {
 
-   // const completedCount = list.todos.fiter(todo => todo.completed).length;
+    //const completedCount = list.todos.fiter(todo => todo.completed).length;
     //const remainingCount = list.todos.length - completedCount;
 
   return (
