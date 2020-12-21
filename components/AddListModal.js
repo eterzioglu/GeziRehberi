@@ -24,7 +24,7 @@ const AddListModal=()=>{
         });
 
         setname("");
-        closeModal();
+       // closeModal();
     }
 
 

@@ -27,6 +27,10 @@ const Flowers=()=> {
     closeModal=()=>{
       setFlowers(false)
      }
+
+     renderList=list=>{
+       return <TodoList list={list}/>
+     }
      
 
     return (
@@ -34,6 +38,7 @@ const Flowers=()=> {
         <Modal animationType="slide"
           visible={addFlowersVisible} 
           onRequestClose={toggleAddFlowersModal}>
+            
             <AddListModal closeModal={closeModal}/>
         
         </Modal>
@@ -55,7 +60,7 @@ const Flowers=()=> {
             keyExtractor={(item) => item.name}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => <TodoList list={item} />}
+            renderItem={({ item }) => this.renderList(item)}
           />
         </View>
       </View>
