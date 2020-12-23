@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   listContainer: {
     marginTop: 10,
     borderRadius: 6,
-    width:500
+    width: 500,
   },
   listTitle: {
     fontSize: 24,

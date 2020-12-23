@@ -71,6 +71,9 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightPink,
     alignItems: "center",
   },
+  listArea: {
+    flex: 1,
+  },
   title: {
     fontSize: 38,
     fontWeight: "bold",
