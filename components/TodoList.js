@@ -14,9 +14,6 @@ export default TodoList = ({ list }) => {
     setShowListVisible(false)
   }
 
-    //const completedCount = list.todos.fiter(todo => todo.completed).length;
-    //const remainingCount = list.todos.length - completedCount;
-
   return (
     <View>
       <Modal 
@@ -29,16 +26,6 @@ export default TodoList = ({ list }) => {
       <Text style={styles.listTitle} numberOfLines={1}>
         {list.name}
       </Text>
-      <View>
-          <View style = {{alignItems: "center"}}>
-              <Text style={styles.count}>0</Text>
-              <Text style={styles.subtitle}>Remaining</Text>
-          </View>
-          <View style = {{alignItems: "center"}}>
-              <Text style={styles.count}>0</Text>
-              <Text style={styles.subtitle}>Completed</Text>
-          </View>
-      </View>
     </TouchableOpacity>
     </View> 
   );
@@ -46,12 +33,9 @@ export default TodoList = ({ list }) => {
 
 const styles = StyleSheet.create({
   listContainer: {
-    paddingVertical: 32,
-    paddingHorizontal: 16,
+    marginTop:10,
     borderRadius: 6,
-    marginHorizontal: 12,
-    alignItems: "center",
-    width: 200,
+    width: "100"
   },
   listTitle: {
       fontSize:24,
