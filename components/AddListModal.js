@@ -8,33 +8,38 @@ import {
   TextInput,
 } from "react-native";
 import { colors } from "react-native-elements";
+import { FlatList } from "react-native-gesture-handler";
+import Firebase from "../config/Firebase";
 import { AntDesign } from "../node_modules/@expo/vector-icons";
-import tempData from "../tempData";
 
 const AddListModal = () => {
-  /* state={F
-        name:"",
-        color:this.backgroundColor[0]
-    };*/
 
+  var backgroundColor=["#F44336", "#E91E63","#9C27B0","#673AB7","#2196F3","#4CAF50","#FF9800","#26C6DA","#81C784","#FFC107"]
   const [name, setname] = useState("");
   const [color, setcolor] = useState({});
 
   createFlowersList = () => {
-    tempData.push({
-      name,
-      color: "purple",
-      todos: [],
-    });
+   Firebase.firestore().collection("Users").doc(name).set({
+      name: name,
+      color: color,
+      note:" ",
+      water:false
+  })
+  .then(function() {
+      console.log("Document successfully written!");
+  })
+  .catch(function(error) {
+      console.error("Error writing document: ", error);
+  });
 
-    setname("");
-    // closeModal();
+  closeModal();
+
   };
 
   renderColor = () => {
-    // backgroundColor=["#F44336", "#E91E63","#9C27B0","#673AB7","#2196F3","#4CAF50","#FF9800"]
+    
 
-    return this.backgroundColor.map((color) => {
+    return backgroundColor.map((color) => {
       return (
         <TouchableOpacity
           key={color}
@@ -61,12 +66,13 @@ const AddListModal = () => {
 
       <View style={{ alignSelf: "stretch", marginHorizonal: 32 }}>
         <Text style={styles.title}>Create Flowers List</Text>
+       
         <TextInput
           style={styles.input}
           placeholder="List Name?"
-          onChangeText={(text) => setname(text)}
+          onChangeText={(name) => setname(name)}
         />
-
+      
         <View
           style={{
             paddingLeft: 25,
@@ -75,11 +81,21 @@ const AddListModal = () => {
             justifyContent: "space-around",
             marginTop: 12,
           }}
-        ></View>
+        >
+            <TouchableOpacity>
+        <FlatList
+          data={backgroundColor}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => renderColor(item)}
+        />
+        </TouchableOpacity>
+
+        </View>
 
         <TouchableOpacity
           style={{
-            backgroundColor: "blue",
+            backgroundColor: color,
             marginTop: 24,
             height: 50,
             borderRadius: 6,
@@ -90,7 +106,7 @@ const AddListModal = () => {
           }}
           onPress={createFlowersList}
         >
-          <Text style={{ color: colors.white, fontWeight: "600" }}>Create</Text>
+          <Text style={{ color: colors.black, fontWeight: "600" }}>Create</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -102,6 +118,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: colors.lightPink,
   },
   title: {
     fontSize: 28,
@@ -120,8 +137,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     alignSelf: "center",
     width: 310,
-  },
-  create: {},
+  }
 });
 
 export default AddListModal;

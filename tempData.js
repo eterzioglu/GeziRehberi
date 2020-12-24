@@ -2,7 +2,7 @@
 
 export default tempData = [
     {
-        name: "Plan a Trip",
+        name: "Plan ",
         color: "#24A6D9",
         todos: [
             {

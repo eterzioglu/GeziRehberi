@@ -19,6 +19,9 @@ try {
   if (!/already exists/.test(err.message)) {
   console.error( err.stack)
   }}
+
+
+
   const Firebase= firebase;
 
 

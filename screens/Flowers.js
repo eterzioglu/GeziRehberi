@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {
+import React, { useEffect, useState } from "react";
+import {ActivityIndicator,
   View,
   Text,
   StyleSheet,
@@ -9,14 +9,44 @@ import {
   SafeAreaView,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import Firebase from "../config/Firebase";
 
 import colors from "../components/Colors";
 import tempData from "../tempData";
 import TodoList from "../components/TodoList";
 import AddListModal from "../components/AddListModal";
+import { color } from "react-native-reanimated";
 
 const Flowers = () => {
+  
+  
+  const [loading, setLoading] = useState(true); // Set loading to true on component mount
+  const [users, setUsers] = useState([]); // Initial empty array of users
+  
+  useEffect(() => {
+    const subscriber = Firebase.firestore()
+      .collection('Users')
+      .onSnapshot(querySnapshot => {
+        const users = [];
+  
+        querySnapshot.forEach(documentSnapshot => {
+          users.push({
+            ...documentSnapshot.data(),
+            key: documentSnapshot.id,
+          });
+        });
+  
+        setUsers(users);
+        setLoading(false);
+      });
+  
+    // Unsubscribe from events when no longer in use
+    return () => subscriber();
+  }, []);
+
+  
   const [addFlowersVisible, setFlowers] = useState(false);
+
 
   toggleAddFlowersModal = () => {
     setFlowers(true);
@@ -43,13 +73,15 @@ const Flowers = () => {
       <Text style={styles.title}>FLOWERS</Text>
 
       <View style={styles.listArea}>
-        <FlatList
-          data={tempData}
-          keyExtractor={(item) => item.name}
-          horizontal={false}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => this.renderList(item)}
-        />
+        
+      <FlatList
+      data={users}
+       horizontal={false}
+       showsHorizontalScrollIndicator={false}
+      renderItem={({ item }) => renderList(item)}
+    />
+  
+  
       </View>
 
       <View style={styles.buttonArea}>
@@ -73,6 +105,7 @@ const styles = StyleSheet.create({
   },
   listArea: {
     flex: 1,
+
   },
   title: {
     fontSize: 38,
