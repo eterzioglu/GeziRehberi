@@ -12,14 +12,10 @@ import { AntDesign } from "@expo/vector-icons";
 import Firebase from "../config/Firebase";
 
 import colors from "../components/Colors";
-import tempData from "../tempData";
 import TodoList from "../components/TodoList";
 import AddListModal from "../components/AddListModal";
-import { color } from "react-native-reanimated";
 
-const Flowers = () => {
-  
-  
+const Flowers = () => { 
   const [loading, setLoading] = useState(true); // Set loading to true on component mount
   const [users, setUsers] = useState([]); // Initial empty array of users
   
