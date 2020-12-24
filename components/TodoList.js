@@ -13,10 +13,16 @@ import { Ionicons } from "../node_modules/@expo/vector-icons";
 import { Entypo } from "../node_modules/@expo/vector-icons";
 import { AntDesign } from "../node_modules/@expo/vector-icons";
 import Firebase from "../config/Firebase";
+import Unsplash from 'unsplash-js';
 
 const TodoList = ({ list }) => {
   const [checkbutton, setCheck] = useState(false);
   const [mynotes, setMyNotes] = useState("");
+
+/*   const unsplash = new Unsplash({
+    applicationId: "LYr1tPSalq5G7qbuxeg4b-oJdwq4x3vhD3Re4YTf5Lo",
+    secret: "y4FTRsuSHBDCgK7G-fvyfFvq3yItq7YQXsEqIffq2MQ"
+  }); */
 
   check = () => {
     setCheck(true);
@@ -39,13 +45,14 @@ const TodoList = ({ list }) => {
   note = () => {
     alert("Added Note");
   };
+
   return (
     <View>
       <View style={[styles.listContainer, { backgroundColor: list.color }]}>
         <View style={{ flexDirection: "row" }}>
           <Image
             style={styles.tinyLogo}
-            source={require("../assets/no-image.jpg")}
+            source={{uri:`https://api.unsplash.com/photos/?client_id=LYr1tPSalq5G7qbuxeg4b-oJdwq4x3vhD3Re4YTf5L&query=flower`}}
           />
           <Text style={styles.listTitle} numberOfLines={1}>
             {list.name}
@@ -55,24 +62,24 @@ const TodoList = ({ list }) => {
               name={checkbutton ? "ios-square" : "ios-square-outline"}
               size={30}
               color={colors.white}
-              style={{ width: 32, alignSelf: "flex-end" }}
+              style={{ width: 32, paddingLeft: 10 }}
             />
           </TouchableOpacity>
         </View>
-        <View style={{ flexDirection: "row", paddingLeft: 260 }}>
+        <View style={{ flexDirection: "row", paddingLeft: 160 }}>
           <Entypo name="drop" size={20} color="#4FC3F7" />
           <Text style={{ flex: 1, fontSize: 15, color: colors.white }}>
             {checkbutton ? "I'm more alive now" : "please water me"}
           </Text>
         </View>
-        <View style={{ flexDirection: "row", paddingLeft: 260, paddingTop: 5 }}>
+        <View style={{ flexDirection: "row", paddingLeft: 160, paddingTop: 5 }}>
           <TextInput
             style={styles.input}
             placeholder="Take a Note"
             onChangeText={(mynotes) => setMyNotes(mynotes)}
           />
           <TouchableOpacity onPress={note}>
-            <AntDesign name="plus" size={20} color={colors.white} />
+            <AntDesign name="plus" size={20} color={colors.white} style={{ marginTop: 12, marginLeft: 5 }}/>
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: "row", paddingLeft: 165, paddingTop: 5 }}>
@@ -108,7 +115,7 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   tinyLogo: {
-    width: "30%",
+    width: "20%",
     height: "300%",
   },
   input: {

@@ -13,32 +13,42 @@ import Firebase from "../config/Firebase";
 import { AntDesign } from "../node_modules/@expo/vector-icons";
 
 const AddListModal = () => {
-
-  var backgroundColor=["#F44336", "#E91E63","#9C27B0","#673AB7","#2196F3","#4CAF50","#FF9800","#26C6DA","#81C784","#FFC107"]
+  var backgroundColor = [
+    "#F44336",
+    "#E91E63",
+    "#9C27B0",
+    "#673AB7",
+    "#2196F3",
+    "#4CAF50",
+    "#FF9800",
+    "#26C6DA",
+    "#81C784",
+    "#FFC107",
+  ];
   const [name, setname] = useState("");
   const [color, setcolor] = useState({});
 
   createFlowersList = () => {
-   Firebase.firestore().collection("Users").doc(name).set({
-      name: name,
-      color: color,
-      note:" ",
-      water:false
-  })
-  .then(function() {
-      console.log("Document successfully written!");
-  })
-  .catch(function(error) {
-      console.error("Error writing document: ", error);
-  });
+    Firebase.firestore()
+      .collection("Users")
+      .doc(name)
+      .set({
+        name: name,
+        color: color,
+        note: " ",
+        water: false,
+      })
+      .then(function () {
+        console.log("Document successfully written!");
+      })
+      .catch(function (error) {
+        console.error("Error writing document: ", error);
+      });
 
-  closeModal();
-
+    closeModal();
   };
 
   renderColor = () => {
-    
-
     return backgroundColor.map((color) => {
       return (
         <TouchableOpacity
@@ -66,31 +76,22 @@ const AddListModal = () => {
 
       <View style={{ alignSelf: "stretch", marginHorizonal: 32 }}>
         <Text style={styles.title}>Create Flowers List</Text>
-       
+
         <TextInput
           style={styles.input}
           placeholder="List Name?"
           onChangeText={(name) => setname(name)}
         />
-      
-        <View
-          style={{
-            paddingLeft: 25,
-            width: 330,
-            flexDirection: "row",
-            justifyContent: "space-around",
-            marginTop: 12,
-          }}
-        >
-            <TouchableOpacity>
-        <FlatList
-          data={backgroundColor}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          renderItem={({ item }) => renderColor(item)}
-        />
-        </TouchableOpacity>
 
+        <View style={(stye = styles.colorContainer)}>
+          <TouchableOpacity>
+            <FlatList
+              data={backgroundColor}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              renderItem={({ item }) => renderColor(item)}
+            />
+          </TouchableOpacity>
         </View>
 
         <TouchableOpacity
@@ -106,7 +107,7 @@ const AddListModal = () => {
           }}
           onPress={createFlowersList}
         >
-          <Text style={{ color: colors.black, fontWeight: "600" }}>Create</Text>
+          <Text style={{ color: colors.black, fontWeight: "700",fontSize:25 }}>Create</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -119,6 +120,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: colors.lightPink,
+  },
+  colorContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginTop: 20,
   },
   title: {
     fontSize: 28,
@@ -137,7 +143,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     alignSelf: "center",
     width: 310,
-  }
+  },
 });
 
 export default AddListModal;
