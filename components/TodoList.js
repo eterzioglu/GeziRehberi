@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef,useEffect} from "react";
 import {
   View,
   Text,
@@ -15,24 +15,21 @@ import { AntDesign } from "../node_modules/@expo/vector-icons";
 import Firebase from "../config/Firebase";
 import Unsplash from 'unsplash-js';
 
+
+
 const TodoList = ({ list }) => {
   const [checkbutton, setCheck] = useState(false);
-  const [mynotes, setMyNotes] = useState("");
 
-/*   const unsplash = new Unsplash({
-    applicationId: "LYr1tPSalq5G7qbuxeg4b-oJdwq4x3vhD3Re4YTf5Lo",
-    secret: "y4FTRsuSHBDCgK7G-fvyfFvq3yItq7YQXsEqIffq2MQ"
-  }); */
-
+  
   check = () => {
-    setCheck(true);
 
-    var waterRef = Firebase.firestore().collection("Users").doc(list.name);
+    if(checkbutton){
+    setCheck(false);
 
-    // Set the "capital" field of the city 'DC'
+    var waterRef = Firebase.firestore().collection("user").doc("test@test.com").collection("test@test.com").doc(list.name);
     return waterRef
       .update({
-        water: checkbutton,
+        water: false,
       })
       .then(function () {
         console.log("Document successfully updated!");
@@ -41,9 +38,27 @@ const TodoList = ({ list }) => {
         // The document probably doesn't exist.
         console.error("Error updating document: ", error);
       });
-  };
-  note = () => {
-    alert("Added Note");
+
+    }
+    else{
+      setCheck(true);
+
+      var waterRef = Firebase.firestore().collection("user").doc("test@test.com").collection("test@test.com").doc(list.name);
+  
+      return waterRef
+        .update({
+          water: true,
+        })
+        .then(function () {
+          console.log("Document successfully updated!");
+        })
+        .catch(function (error) {
+          // The document probably doesn't exist.
+          console.error("Error updating document: ", error);
+        });
+  
+
+    }
   };
 
   return (
@@ -71,19 +86,6 @@ const TodoList = ({ list }) => {
           <Text style={{ flex: 1, fontSize: 15, color: colors.white }}>
             {checkbutton ? "I'm more alive now" : "please water me"}
           </Text>
-        </View>
-        <View style={{ flexDirection: "row", paddingLeft: 160, paddingTop: 5 }}>
-          <TextInput
-            style={styles.input}
-            placeholder="Take a Note"
-            onChangeText={(mynotes) => setMyNotes(mynotes)}
-          />
-          <TouchableOpacity onPress={note}>
-            <AntDesign name="plus" size={20} color={colors.white} style={{ marginTop: 12, marginLeft: 5 }}/>
-          </TouchableOpacity>
-        </View>
-        <View style={{ flexDirection: "row", paddingLeft: 165, paddingTop: 5 }}>
-          <Text style={{ color: colors.white }}>{mynotes}</Text>
         </View>
       </View>
     </View>

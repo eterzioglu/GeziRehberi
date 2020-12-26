@@ -11,6 +11,7 @@ import { colors } from "react-native-elements";
 import { FlatList } from "react-native-gesture-handler";
 import Firebase from "../config/Firebase";
 import { AntDesign } from "../node_modules/@expo/vector-icons";
+import moment from 'moment';
 
 const AddListModal = () => {
   var backgroundColor = [
@@ -27,15 +28,15 @@ const AddListModal = () => {
   ];
   const [name, setname] = useState("");
   const [color, setcolor] = useState({});
-
+  
+  
   createFlowersList = () => {
     Firebase.firestore()
-      .collection("Users")
-      .doc(name)
+      .collection("user").doc("test@test.com")
+      .collection("test@test.com").doc(name)
       .set({
         name: name,
         color: color,
-        note: " ",
         water: false,
       })
       .then(function () {
