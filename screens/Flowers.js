@@ -1,7 +1,8 @@
-import * as Notifications from 'expo-notifications';
-import * as Permissions from 'expo-permissions';
-import React, { useState, useEffect, useRef } from 'react';
-import {ActivityIndicator,
+import * as Notifications from "expo-notifications";
+import * as Permissions from "expo-permissions";
+import React, { useState, useEffect, useRef } from "react";
+import {
+  ActivityIndicator,
   View,
   Text,
   StyleSheet,
@@ -24,34 +25,35 @@ console.disableYellowBox = true;
 async function registerForPushNotificationsAsync() {
   let token;
   if (Constants.isDevice) {
-    const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+    const { status: existingStatus } = await Permissions.getAsync(
+      Permissions.NOTIFICATIONS
+    );
     let finalStatus = existingStatus;
-    if (existingStatus !== 'granted') {
+    if (existingStatus !== "granted") {
       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
       finalStatus = status;
     }
-    if (finalStatus !== 'granted') {
-      alert('Failed to get push token for push notification!');
+    if (finalStatus !== "granted") {
+      alert("Failed to get push token for push notification!");
       return;
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
     console.log(token);
   } else {
-    alert('Must use physical device for Push Notifications');
+    alert("Must use physical device for Push Notifications");
   }
 
-  if (Platform.OS === 'android') {
-    Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
+  if (Platform.OS === "android") {
+    Notifications.setNotificationChannelAsync("default", {
+      name: "default",
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
-      lightColor: '#FF231F7C',
+      lightColor: "#FF231F7C",
     });
   }
 
   return token;
 }
-
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -61,61 +63,61 @@ Notifications.setNotificationHandler({
   }),
 });
 
-
-
-
-const Flowers = () => { 
+const Flowers = () => {
   const [loading, setLoading] = useState(true); // Set loading to true on component mount
   const [users, setUsers] = useState([]); // Initial empty array of users
-  const [expoPushToken, setExpoPushToken] = useState('');
+  const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
-  
+
   const notificationListener = useRef();
   const responseListener = useRef();
 
-
-  
-  
   useEffect(() => {
+    registerForPushNotificationsAsync().then((token) =>
+      setExpoPushToken(token)
+    );
 
-    registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
+    notificationListener.current = Notifications.addNotificationReceivedListener(
+      (notification) => {
+        setNotification(notification);
+      }
+    );
 
-    notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
-      setNotification(notification);
-    });
-
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
-    });
-
+    responseListener.current = Notifications.addNotificationResponseReceivedListener(
+      (response) => {
+        console.log(response);
+      }
+    );
 
     Notifications.scheduleNotificationAsync({
       content: {
         title: "There is a message from your flowers 🌸",
         body: "Please don't forget to water us",
-        data: { data: 'goes here' },
+        data: { data: "goes here" },
       },
       trigger: { seconds: 60 * 60 * 24000 },
     });
 
- //TimeIntervalTriggerInput.seconds=2; Deniyordum burayı şimdi
+    //TimeIntervalTriggerInput.seconds=2; Deniyordum burayı şimdi
 
     const subscriber = Firebase.firestore()
-      .collection('user').doc("test@test.com").collection("test@test.com")
-      .onSnapshot(querySnapshot => {
+      .collection("user")
+      .doc("test@test.com")
+      .collection("test@test.com")
+      .onSnapshot((querySnapshot) => {
         const users = [];
-  
-        querySnapshot.forEach(documentSnapshot => {
+
+        querySnapshot.forEach((documentSnapshot) => {
           users.push({
             ...documentSnapshot.data(),
             key: documentSnapshot.id,
           });
         });
-  
+
         setUsers(users);
         setLoading(false);
       });
-  
+
     // Unsubscribe from events when no longer in use
     return () => {
       Notifications.removeNotificationSubscription(notificationListener);
@@ -124,9 +126,7 @@ const Flowers = () => {
     };
   }, []);
 
-  
   const [addFlowersVisible, setFlowers] = useState(false);
-
 
   toggleAddFlowersModal = () => {
     setFlowers(true);
@@ -153,16 +153,14 @@ const Flowers = () => {
       <Text style={styles.title}>FLOWERS</Text>
 
       <View style={styles.listArea}>
-        
-      <FlatList
-      data={users}
-       horizontal={false}
-       showsHorizontalScrollIndicator={false}
-      renderItem={({ item }) => renderList(item)}
-    />
-  
-    </View>
-  
+        <FlatList
+          data={users}
+          horizontal={false}
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => renderList(item)}
+        />
+      </View>
+
       <View style={styles.buttonArea}>
         <TouchableOpacity
           style={styles.addList}
@@ -184,7 +182,6 @@ const styles = StyleSheet.create({
   },
   listArea: {
     flex: 1,
-
   },
   title: {
     fontSize: 38,

@@ -12,11 +12,10 @@ import colors from "./Colors";
 import { Ionicons } from "../node_modules/@expo/vector-icons";
 import { Entypo } from "../node_modules/@expo/vector-icons";
 import Firebase from "../config/Firebase";
-import {getImageFromId} from "../utils/api"
+import { getImageFromId } from "../utils/api";
+import moment from "moment";
 
 console.disableYellowBox = true;
-
-
 
 const TodoList = ({ list }) => {
   const [checkbutton, setCheck] = useState(false);
@@ -34,10 +33,7 @@ const TodoList = ({ list }) => {
     "1043",
     "1068",
   ];
-  scoreplus=()=>{
-   
-
-  }
+  scoreplus = () => {};
 
   check = () => {
     if (checkbutton) {
@@ -54,29 +50,27 @@ const TodoList = ({ list }) => {
         .then(function () {
           console.log("Document successfully updated!");
         })
-        .then(function(){
-          setScore(score-5)
-              var scoreRef = Firebase.firestore()
-              .collection("user")
-              .doc("test@test.com")
-            return scoreRef
-              .update({
-                Score: score,
-              })
-              .then(function () {
-                console.log("Document successfully updated!");
-              })
-              .catch(function (error) {
-                // The document probably doesn't exist.
-                console.error("Error updating document: ", error);
-              });       
+        .then(function () {
+          setScore(score - 5);
+          var scoreRef = Firebase.firestore()
+            .collection("user")
+            .doc("test@test.com");
+          return scoreRef
+            .update({
+              Score: score,
+            })
+            .then(function () {
+              console.log("Document successfully updated!");
+            })
+            .catch(function (error) {
+              // The document probably doesn't exist.
+              console.error("Error updating document: ", error);
+            });
         })
         .catch(function (error) {
           // The document probably doesn't exist.
           console.error("Error updating document: ", error);
         });
-
-
     } else {
       setCheck(true);
       var waterRef = Firebase.firestore()
@@ -92,22 +86,22 @@ const TodoList = ({ list }) => {
         .then(function () {
           console.log("Document successfully updated!");
         })
-        .then(function(){
-          setScore(score+5)
-              var scoreRef = Firebase.firestore()
-              .collection("user")
-              .doc("test@test.com")
-            return scoreRef
-              .update({
-                Score: score,
-              })
-              .then(function () {
-                console.log("Document successfully updated!");
-              })
-              .catch(function (error) {
-                // The document probably doesn't exist.
-                console.error("Error updating document: ", error);
-              });       
+        .then(function () {
+          setScore(score + 5);
+          var scoreRef = Firebase.firestore()
+            .collection("user")
+            .doc("test@test.com");
+          return scoreRef
+            .update({
+              Score: score,
+            })
+            .then(function () {
+              console.log("Document successfully updated!");
+            })
+            .catch(function (error) {
+              // The document probably doesn't exist.
+              console.error("Error updating document: ", error);
+            });
         })
         .catch(function (error) {
           // The document probably doesn't exist.
@@ -122,7 +116,9 @@ const TodoList = ({ list }) => {
         <View style={{ flexDirection: "row" }}>
           <Image
             style={styles.tinyLogo}
-            source={{uri: getImageFromId(id[Math.floor(Math.random()*id.length)])}}
+            source={{
+              uri: getImageFromId(id[Math.floor(Math.random() * id.length)]),
+            }}
           />
           <Text style={styles.listTitle} numberOfLines={1}>
             {list.name}
