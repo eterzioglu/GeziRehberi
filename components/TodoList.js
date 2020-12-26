@@ -14,8 +14,13 @@ import { Entypo } from "../node_modules/@expo/vector-icons";
 import Firebase from "../config/Firebase";
 import {getImageFromId} from "../utils/api"
 
+console.disableYellowBox = true;
+
+
+
 const TodoList = ({ list }) => {
   const [checkbutton, setCheck] = useState(false);
+  const [score, setScore] = useState(0);
 
   var id = [
     "152",
@@ -29,11 +34,14 @@ const TodoList = ({ list }) => {
     "1043",
     "1068",
   ];
+  scoreplus=()=>{
+   
+
+  }
 
   check = () => {
     if (checkbutton) {
       setCheck(false);
-
       var waterRef = Firebase.firestore()
         .collection("user")
         .doc("test@test.com")
@@ -46,13 +54,31 @@ const TodoList = ({ list }) => {
         .then(function () {
           console.log("Document successfully updated!");
         })
+        .then(function(){
+          setScore(score-5)
+              var scoreRef = Firebase.firestore()
+              .collection("user")
+              .doc("test@test.com")
+            return scoreRef
+              .update({
+                Score: score,
+              })
+              .then(function () {
+                console.log("Document successfully updated!");
+              })
+              .catch(function (error) {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
+              });       
+        })
         .catch(function (error) {
           // The document probably doesn't exist.
           console.error("Error updating document: ", error);
         });
+
+
     } else {
       setCheck(true);
-
       var waterRef = Firebase.firestore()
         .collection("user")
         .doc("test@test.com")
@@ -65,6 +91,23 @@ const TodoList = ({ list }) => {
         })
         .then(function () {
           console.log("Document successfully updated!");
+        })
+        .then(function(){
+          setScore(score+5)
+              var scoreRef = Firebase.firestore()
+              .collection("user")
+              .doc("test@test.com")
+            return scoreRef
+              .update({
+                Score: score,
+              })
+              .then(function () {
+                console.log("Document successfully updated!");
+              })
+              .catch(function (error) {
+                // The document probably doesn't exist.
+                console.error("Error updating document: ", error);
+              });       
         })
         .catch(function (error) {
           // The document probably doesn't exist.

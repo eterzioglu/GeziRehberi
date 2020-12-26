@@ -4,6 +4,8 @@ import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-nativ
 import Firebase from '../config/Firebase';
 import { useState } from 'react'
 
+console.disableYellowBox = true;
+
 const SifremiUnuttum =props=> {
 
     const {navigation} = props;

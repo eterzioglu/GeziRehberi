@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { View, TextInput, StyleSheet, TouchableOpacity, Text, Button } from 'react-native'
 import Firebase from '../config/Firebase';
 
+console.disableYellowBox = true;
+
 const GirisYap =props=>  {
 
     const {navigation} = props;

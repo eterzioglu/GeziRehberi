@@ -18,19 +18,8 @@ import colors from "../components/Colors";
 import TodoList from "../components/TodoList";
 import AddListModal from "../components/AddListModal";
 
-
-
-
-async function schedulePushNotification() {
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      title: "You've got mail! 📬",
-      body: 'Here is the notification body',
-      data: { data: 'goes here' },
-    },
-    trigger: { seconds: 2 },
-  });
-}
+//disable yellow warnings on EXPO client!
+console.disableYellowBox = true;
 
 async function registerForPushNotificationsAsync() {
   let token;
@@ -64,10 +53,6 @@ async function registerForPushNotificationsAsync() {
 }
 
 
-
-
-
-
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -93,7 +78,6 @@ const Flowers = () => {
   
   useEffect(() => {
 
-
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
 
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
@@ -103,6 +87,18 @@ const Flowers = () => {
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
     });
+
+
+    Notifications.scheduleNotificationAsync({
+      content: {
+        title: "There is a message from your flowers 🌸",
+        body: "Please don't forget to water us",
+        data: { data: 'goes here' },
+      },
+      trigger: { seconds: 60 * 60 * 24000 },
+    });
+
+ //TimeIntervalTriggerInput.seconds=2; Deniyordum burayı şimdi
 
     const subscriber = Firebase.firestore()
       .collection('user').doc("test@test.com").collection("test@test.com")
@@ -165,15 +161,8 @@ const Flowers = () => {
       renderItem={({ item }) => renderList(item)}
     />
   
+    </View>
   
-      </View>
-      <Button
-        title="Press to schedule a notification"
-        onPress={async () => {
-          await schedulePushNotification();
-        }}
-      />
-
       <View style={styles.buttonArea}>
         <TouchableOpacity
           style={styles.addList}
