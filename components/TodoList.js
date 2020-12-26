@@ -1,4 +1,4 @@
-import React, { useState,useRef,useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   View,
   Text,
@@ -11,40 +11,54 @@ import {
 import colors from "./Colors";
 import { Ionicons } from "../node_modules/@expo/vector-icons";
 import { Entypo } from "../node_modules/@expo/vector-icons";
-import { AntDesign } from "../node_modules/@expo/vector-icons";
 import Firebase from "../config/Firebase";
-import Unsplash from 'unsplash-js';
-
-
+import {getImageFromId} from "../utils/api"
 
 const TodoList = ({ list }) => {
   const [checkbutton, setCheck] = useState(false);
 
-  
+  var id = [
+    "152",
+    "106",
+    "239",
+    "306",
+    "530",
+    "696",
+    "958",
+    "1022",
+    "1043",
+    "1068",
+  ];
+
   check = () => {
+    if (checkbutton) {
+      setCheck(false);
 
-    if(checkbutton){
-    setCheck(false);
-
-    var waterRef = Firebase.firestore().collection("user").doc("test@test.com").collection("test@test.com").doc(list.name);
-    return waterRef
-      .update({
-        water: false,
-      })
-      .then(function () {
-        console.log("Document successfully updated!");
-      })
-      .catch(function (error) {
-        // The document probably doesn't exist.
-        console.error("Error updating document: ", error);
-      });
-
-    }
-    else{
+      var waterRef = Firebase.firestore()
+        .collection("user")
+        .doc("test@test.com")
+        .collection("test@test.com")
+        .doc(list.name);
+      return waterRef
+        .update({
+          water: false,
+        })
+        .then(function () {
+          console.log("Document successfully updated!");
+        })
+        .catch(function (error) {
+          // The document probably doesn't exist.
+          console.error("Error updating document: ", error);
+        });
+    } else {
       setCheck(true);
 
-      var waterRef = Firebase.firestore().collection("user").doc("test@test.com").collection("test@test.com").doc(list.name);
-  
+      var waterRef = Firebase.firestore()
+        .collection("user")
+        .doc("test@test.com")
+        .collection("test@test.com")
+        .doc(list.name);
+
       return waterRef
         .update({
           water: true,
@@ -56,8 +70,6 @@ const TodoList = ({ list }) => {
           // The document probably doesn't exist.
           console.error("Error updating document: ", error);
         });
-  
-
     }
   };
 
@@ -67,7 +79,7 @@ const TodoList = ({ list }) => {
         <View style={{ flexDirection: "row" }}>
           <Image
             style={styles.tinyLogo}
-            source={{uri:`https://api.unsplash.com/photos/?client_id=LYr1tPSalq5G7qbuxeg4b-oJdwq4x3vhD3Re4YTf5L&query=flower`}}
+            source={{uri: getImageFromId(id[Math.floor(Math.random()*id.length)])}}
           />
           <Text style={styles.listTitle} numberOfLines={1}>
             {list.name}
@@ -96,7 +108,7 @@ const styles = StyleSheet.create({
   listContainer: {
     marginTop: 10,
     borderRadius: 6,
-    width: "150%",
+    width: 500,
     height: 150,
   },
   listTitle: {
@@ -117,7 +129,7 @@ const styles = StyleSheet.create({
     color: colors.white,
   },
   tinyLogo: {
-    width: "20%",
+    width: "30%",
     height: "300%",
   },
   input: {
