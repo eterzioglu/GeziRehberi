@@ -181,7 +181,7 @@ const Flowers = () => {
         >
           <AntDesign name="plus" size={16} color={colors.blue} />
         </TouchableOpacity>
-        <Text style={styles.add}>Add List</Text>
+        <Text style={styles.add}>Add Flower</Text>
       </View>
     </View>
   );
