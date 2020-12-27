@@ -4,7 +4,7 @@
     "slug": "GeziRehberi",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/flower.png",
     "splash": {
       "image": "./assets/giris.png",
       "resizeMode": "contain",
