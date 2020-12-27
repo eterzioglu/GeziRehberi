@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "GeziRehberi",
-    "slug": "GeziRehberi",
+    "name": "WaterTheFlowers",
+    "slug": "WaterTheFlowers",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/flower.png",

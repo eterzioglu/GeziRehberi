@@ -6,13 +6,10 @@ import {
   TouchableOpacity,
   Text,
   Button,
-  Image,
-  AsyncStorage 
+  Image
 } from "react-native";
 import Firebase from "../config/Firebase";
 import colors from "../components/Colors";
-
-console.disableYellowBox = true;
 
 const GirisYap = (props) => {
   const { navigation } = props;

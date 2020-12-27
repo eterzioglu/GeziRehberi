@@ -11,7 +11,6 @@ import Firebase from "../config/Firebase";
 import { useState } from "react";
 import colors from "../components/Colors";
 
-console.disableYellowBox = true;
 
 const KayitOl = (props) => {
   const { navigation } = props;

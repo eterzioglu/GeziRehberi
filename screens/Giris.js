@@ -3,8 +3,6 @@ import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import colors from "../components/Colors";
 
-console.disableYellowBox = true;
-
 const Giris = (props) => {
   const { navigation } = props;
   return (
