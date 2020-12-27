@@ -8,8 +8,6 @@ import GirisYap from '../screens/GirisYap';
 import SifremiUnuttum from '../screens/SifremiUnuttum';
 import Anasayfa from '../screens/Anasayfa';
 
-import EkSayfa from '../screens/EkSayfa';
-
 const Stack = createStackNavigator();
 
 const AppNavigationContainer = () => {
@@ -22,8 +20,6 @@ const AppNavigationContainer = () => {
         <Stack.Screen name="GirisYap" component={GirisYap} />
         <Stack.Screen name="SifremiUnuttum" component={SifremiUnuttum} />
         <Stack.Screen name="Anasayfa" component={Anasayfa} />
-        
-        <Stack.Screen name="EkSayfa" component={EkSayfa} />
         </Stack.Navigator>
       </NavigationContainer>
     );

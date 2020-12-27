@@ -2,6 +2,7 @@ import React, { useState,useEffect  } from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import Firebase from '../config/Firebase';
+import colors from "../components/Colors";
 
 const Profile =props=> {
     const {navigation} = props;
@@ -53,11 +54,11 @@ const Profile =props=> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#9ad3bc',
+    backgroundColor: colors.lightPink,
   },
   text:{
   fontSize:30,
-  color:'#db6400',
+  color:colors.green,
   alignSelf:"center"
   }
 });

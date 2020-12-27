@@ -14,8 +14,6 @@ import { AntDesign } from "../node_modules/@expo/vector-icons";
 
 console.disableYellowBox = true;
 
-
-
 const AddListModal = () => {
   var backgroundColor = [
     "#F44336",
@@ -32,11 +30,12 @@ const AddListModal = () => {
   const [name, setname] = useState("");
   const [color, setcolor] = useState({});
 
-
   createFlowersList = () => {
     Firebase.firestore()
-      .collection("user").doc("test@test.com")
-      .collection("test@test.com").doc(name)
+      .collection("user")
+      .doc("test@test.com")
+      .collection("test@test.com")
+      .doc(name)
       .set({
         name: name,
         color: color,
@@ -86,6 +85,7 @@ const AddListModal = () => {
           placeholder="List Name?"
           onChangeText={(name) => setname(name)}
         />
+        <Text style={styles.pickText}>Pick Color</Text>
 
         <View style={(stye = styles.colorContainer)}>
           <TouchableOpacity>
@@ -111,7 +111,11 @@ const AddListModal = () => {
           }}
           onPress={createFlowersList}
         >
-          <Text style={{ color: colors.black, fontWeight: "700",fontSize:25 }}>Create</Text>
+          <Text
+            style={{ color: colors.black, fontWeight: "700", fontSize: 25 }}
+          >
+            Create
+          </Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -129,6 +133,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 20,
+  },
+  pickText: {
+    paddingTop: 20,
+    alignSelf: "center",
   },
   title: {
     fontSize: 28,

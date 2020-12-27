@@ -3,6 +3,7 @@ import { View, TextInput, StyleSheet, TouchableOpacity, Text } from 'react-nativ
 
 import Firebase from '../config/Firebase';
 import { useState } from 'react'
+import colors from "../components/Colors";
 
 console.disableYellowBox = true;
 
@@ -46,7 +47,7 @@ const SifremiUnuttum =props=> {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: colors.lightPink,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
         margin: 10,
         padding: 15,
         fontSize: 16,
-        borderColor: '#d3d3d3',
+        borderColor: "#fff",
         borderBottomWidth: 1,
         textAlign: 'center'
     },
@@ -64,8 +65,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         paddingVertical: 5,
         alignItems: 'center',
-        backgroundColor: '#F6820D',
-        borderColor: '#F6820D',
+        backgroundColor: colors.pink,
+        borderColor: colors.pink,
         borderWidth: 1,
         borderRadius: 5,
         width: 200
