@@ -71,12 +71,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightPink,
   },
   input: {
-    paddingTop: 50,
+    paddingTop: "1%",
     alignItems: "center",
     justifyContent: "center",
   },
   images: {
-    paddingTop: 250,
+    paddingTop: "1%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

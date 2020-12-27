@@ -31,10 +31,16 @@ const AddListModal = () => {
   const [color, setcolor] = useState({});
 
   createFlowersList = () => {
+
+
+    var user = firebase.auth().currentUser;
+
+
+
     Firebase.firestore()
       .collection("user")
-      .doc("test@test.com")
-      .collection("test@test.com")
+      .doc(user)
+      .collection(user)
       .doc(name)
       .set({
         name: name,

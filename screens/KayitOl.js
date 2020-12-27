@@ -21,8 +21,9 @@ const KayitOl = (props) => {
   const db = Firebase.firestore();
 
   handleSignUp = () => {
-    db.collection("Users").doc(email).set({
+    Firebase.firestore().collection("user").doc(email).set({
       Username: username,
+      Score:0
     });
     Firebase.auth()
       .createUserWithEmailAndPassword(email, password)
@@ -72,12 +73,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightPink,
   },
   input: {
-    paddingTop: 50,
+    paddingTop: "2%",
     alignItems: "center",
     justifyContent: "center",
   },
   images: {
-    paddingTop: 250,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",

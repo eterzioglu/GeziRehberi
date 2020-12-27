@@ -37,12 +37,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightPink,
   },
   buttons: {
-    paddingTop:200,
+    paddingTop:"5%",
     alignItems: "center",
     justifyContent: "center",
   },
   images: {
-    paddingTop:5,
+    paddingTop:"1%",
     alignItems:"center",
     justifyContent:"flex-start"
   },
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     justifyContent: "space-between",
-    paddingTop: "5%",
+    paddingTop: "2%",
   },
 });
 export default Giris;

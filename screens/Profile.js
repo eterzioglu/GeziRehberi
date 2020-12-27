@@ -10,42 +10,41 @@ const Profile =props=> {
     var email=route.params.caption
     var Email=route.params.c
     var user=[];
+    var score=[];
     
     var Flowers = [];
     
     const[cicekler, setcicekler]=useState([])
     const[username, setUsername]=useState([])
+    
+    const[score_, setscore]=useState([])
     const db = Firebase.firestore();
 
     useEffect(() => {
-      db.collection("Users")
+      db.collection("user")
       .onSnapshot(function(querySnapshot) {
           
           querySnapshot.forEach(function(doc) {
             if((doc.id===Email) || (doc.id===email)){
-              user.push(doc.data().Username);}
+              user.push(doc.data().Username);
+              score.push(doc.data().Score);
+            }
           });
         setUsername(user)
+        setscore(score)
       });
-
-
-      db.collection("deneme").where("Cicek", "array-contains", "papatya")
-      .onSnapshot(function(querySnapshot) {
-          querySnapshot.forEach(function(doc) {
-              Flowers.push(doc.data().Cicek);
-          });
-        //  console.log("Current cities in CA: ", Flowers.join(", "));
-      });
-      setcicekler(Flowers)
-      console.log(cicekler.toString()," xxxxxx")
     },[])
 
 
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>{username} Profile</Text>
+        <Text style={styles.texttitle}>{username} Profile</Text>
         
-        <Text style={styles.text}>{cicekler} xx</Text>
+        <View style={styles.container2}>
+          
+        <Text style={styles.textpoint}>Point : {score_}</Text>
+        </View>
+        <Text style={styles.text}>If you want to earn more points don't forget to water your flowers everyday</Text>
       </View>
     );
 
@@ -55,12 +54,35 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.lightPink,
+
+    justifyContent:'center',
+    alignContent:'center'
+  },
+  container2: {
+    flex: 1,
+    backgroundColor: colors.lightPink,
+
+    justifyContent:'center',
+    alignContent:'center'
   },
   text:{
-  fontSize:30,
+  fontSize:15,
   color:colors.green,
-  alignSelf:"center"
-  }
+  alignSelf:"center",
+  padding:"15%"
+  },
+  texttitle:{
+    fontSize:30,
+    color:colors.green,
+    alignSelf:"center",
+    paddingTop:"1%"
+    }, 
+     textpoint:{
+      fontSize:30,
+      color:colors.green,
+      alignSelf:"center",
+      paddingTop:"1%"
+      }
 });
 
 export default Profile;

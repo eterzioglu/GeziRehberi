@@ -37,7 +37,7 @@ const SifremiUnuttum =props=> {
                 <TouchableOpacity 
                 style={styles.button}
                 onPress={forgotPassword}>
-                    <Text style={styles.buttonText}>Şifremi Sıfırla</Text>
+                    <Text style={styles.buttonText}>Reset My Password</Text>
                 </TouchableOpacity>
             </View>
         )

@@ -5,5 +5,5 @@ import Flowers from './screens/Flowers'
 import Anasayfa from './screens/Anasayfa'
 
 export default function App() {
-  return <Flowers/>;
+  return <AppContainer/>;
 }

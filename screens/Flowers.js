@@ -106,12 +106,13 @@ const Flowers = () => {
       trigger: { seconds: 60 * 60* 24000 },
     });
 
+    var user = firebase.auth().currentUser;
 
 
     const subscriber = Firebase.firestore()
       .collection("user")
-      .doc("test@test.com")
-      .collection("test@test.com")
+      .doc(user)
+      .collection(user)
       .onSnapshot((querySnapshot) => {
         const users = [];
 

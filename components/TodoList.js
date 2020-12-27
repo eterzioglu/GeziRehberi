@@ -48,10 +48,12 @@ useEffect(()=>{
     setCheck(false)
     setdate(currentDate)
 
+    var user = firebase.auth().currentUser;
+
     var waterRef = Firebase.firestore()
     .collection("user")
-    .doc("test@test.com")
-    .collection("test@test.com")
+    .doc(user)
+    .collection(user)
     .doc(list.name);
   return waterRef
     .update({
@@ -68,7 +70,6 @@ useEffect(()=>{
 
 
   }
-  console.log("değişen:",date)
 
 },[])
 
@@ -76,10 +77,11 @@ useEffect(()=>{
   if (checkbutton) {
 
       setCheck(false);
+      var user = firebase.auth().currentUser;
       var waterRef = Firebase.firestore()
         .collection("user")
-        .doc("test@test.com")
-        .collection("test@test.com")
+        .doc(user)
+        .collection(user)
         .doc(list.name);
       return waterRef
         .update({
@@ -92,7 +94,7 @@ useEffect(()=>{
           setScore(score - 5);
           var scoreRef = Firebase.firestore()
             .collection("user")
-            .doc("test@test.com");
+            .doc(user);
           return scoreRef
             .update({
               Score: score,
@@ -113,8 +115,8 @@ useEffect(()=>{
       setCheck(true);
       var waterRef = Firebase.firestore()
         .collection("user")
-        .doc("test@test.com")
-        .collection("test@test.com")
+        .doc(user)
+        .collection(user)
         .doc(list.name);
 
       return waterRef
@@ -128,7 +130,7 @@ useEffect(()=>{
           setScore(score + 5);
           var scoreRef = Firebase.firestore()
             .collection("user")
-            .doc("test@test.com");
+            .doc(user);
           return scoreRef
             .update({
               Score: score,
