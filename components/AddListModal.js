@@ -33,7 +33,7 @@ const AddListModal = () => {
   createFlowersList = () => {
 
 
-    var user = firebase.auth().currentUser;
+    var user = Firebase.auth().currentUser;
 
 
 

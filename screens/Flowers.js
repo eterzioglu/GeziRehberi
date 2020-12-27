@@ -73,8 +73,7 @@ const Flowers = () => {
   const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
 
-  
-  const [currentDate, setCurrentDate] = useState('');
+
   
   const notificationListener = useRef();
   const responseListener = useRef();
@@ -106,7 +105,7 @@ const Flowers = () => {
       trigger: { seconds: 60 * 60* 24000 },
     });
 
-    var user = firebase.auth().currentUser;
+    var user = Firebase.auth().currentUser;
 
 
     const subscriber = Firebase.firestore()

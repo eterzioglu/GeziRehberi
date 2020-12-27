@@ -48,7 +48,7 @@ useEffect(()=>{
     setCheck(false)
     setdate(currentDate)
 
-    var user = firebase.auth().currentUser;
+    var user = Firebase.auth().currentUser;
 
     var waterRef = Firebase.firestore()
     .collection("user")
@@ -77,7 +77,7 @@ useEffect(()=>{
   if (checkbutton) {
 
       setCheck(false);
-      var user = firebase.auth().currentUser;
+      var user = Firebase.auth().currentUser;
       var waterRef = Firebase.firestore()
         .collection("user")
         .doc(user)
