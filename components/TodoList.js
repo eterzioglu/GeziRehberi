@@ -15,12 +15,16 @@ import Firebase from "../config/Firebase";
 import { getImageFromId } from "../utils/api";
 import moment from "moment";
 
+import moment from 'moment';
+
 console.disableYellowBox = true;
 
 const TodoList = ({ list }) => {
   const [checkbutton, setCheck] = useState(false);
   const [score, setScore] = useState(0);
-
+  const [currentDate, setCurrentDate] = useState('');
+  var DATE=[];
+  const [date, setdate] = useState('12/27/2020');
   var id = [
     "152",
     "106",
@@ -33,10 +37,45 @@ const TodoList = ({ list }) => {
     "1043",
     "1068",
   ];
-  scoreplus = () => {};
+
+useEffect(()=>{
+
+  var date = moment()
+  .format('L');
+  setCurrentDate(date);
+  console.log(currentDate)
+  if(date!=currentDate){
+
+    setCheck(false)
+    setdate(currentDate)
+
+    var waterRef = Firebase.firestore()
+    .collection("user")
+    .doc("test@test.com")
+    .collection("test@test.com")
+    .doc(list.name);
+  return waterRef
+    .update({
+      water: false,
+    })
+    .then(function () {
+      console.log("Document successfully updated!");
+    })
+    .catch(function (error) {
+      // The document probably doesn't exist.
+      console.error("Error updating document: ", error);
+    });
+
+
+
+  }
+  console.log("değişen:",date)
+
+},[])
 
   check = () => {
-    if (checkbutton) {
+  if (checkbutton) {
+
       setCheck(false);
       var waterRef = Firebase.firestore()
         .collection("user")
@@ -185,3 +224,5 @@ const styles = StyleSheet.create({
 });
 
 export default TodoList;
+
+
