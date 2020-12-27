@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { View, TextInput, StyleSheet, TouchableOpacity, Text, Button } from 'react-native'
+import { View, TextInput, StyleSheet, TouchableOpacity, Text, Button, Image } from 'react-native'
 import Firebase from '../config/Firebase';
+import colors from "../components/Colors";
 
 console.disableYellowBox = true;
 
@@ -20,6 +21,9 @@ const GirisYap =props=>  {
   
        return (
             <View style={styles.container}>
+                <Image style = {styles.image}>
+                    
+                </Image>
                 <TextInput
                     style={styles.inputBox}
                     onChangeText={email => setEmail(email)}
@@ -59,7 +63,7 @@ const GirisYap =props=>  {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#9ad3bc',
+        backgroundColor: colors.lightPink,
         alignItems: 'center',
         justifyContent: 'center'
     },
@@ -77,8 +81,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         paddingVertical: 5,
         alignItems: 'center',
-        backgroundColor: '#db6400',
-        borderColor: '#db6400',
+        backgroundColor: colors.pink,
+        borderColor: colors.pink,
         borderWidth: 1,
         borderRadius: 5,
         width: 200
@@ -92,7 +96,7 @@ const styles = StyleSheet.create({
         fontSize: 12
     },
     text:{
-    color:'#db6400',
+    color:colors.pink,
     fontSize:20
     },
 })

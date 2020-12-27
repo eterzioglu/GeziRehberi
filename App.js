@@ -3,6 +3,7 @@ import React from 'react';
 import AppContainer from './navigation/AppContainer';
 import Flowers from './screens/Flowers'
 import Anasayfa from './screens/Anasayfa'
+import GirisYap from './screens/GirisYap'
 import CountDown from './screens/Countdown'
 
 export default function App() {

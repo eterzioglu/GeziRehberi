@@ -38,7 +38,7 @@ const TodoList = ({ list }) => {
   ];
 
 useEffect(()=>{
-
+  
   var date = moment()
   .format('L');
   setCurrentDate(date);
