@@ -15,7 +15,6 @@ import Firebase from "../config/Firebase";
 import { getImageFromId } from "../utils/api";
 import moment from "moment";
 
-import moment from 'moment';
 
 console.disableYellowBox = true;
 
