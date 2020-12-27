@@ -78,11 +78,11 @@ const AddListModal = () => {
       </TouchableOpacity>
 
       <View style={{ alignSelf: "stretch", marginHorizonal: 32 }}>
-        <Text style={styles.title}>Create Flowers List</Text>
+        <Text style={styles.title}>Create Flower</Text>
 
         <TextInput
           style={styles.input}
-          placeholder="List Name?"
+          placeholder="Flower Name?"
           onChangeText={(name) => setname(name)}
         />
         <Text style={styles.pickText}>Pick Color</Text>

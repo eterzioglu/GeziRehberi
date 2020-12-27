@@ -7,6 +7,7 @@ import {
   Text,
   Button,
   Image,
+  AsyncStorage 
 } from "react-native";
 import Firebase from "../config/Firebase";
 import colors from "../components/Colors";
