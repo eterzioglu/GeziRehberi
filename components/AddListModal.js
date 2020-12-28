@@ -31,12 +31,7 @@ const AddListModal = () => {
   const [color, setcolor] = useState({});
 
   createFlowersList = () => {
-
-
-    var user = Firebase.auth().currentUser;
-
-
-
+    var user = Firebase.auth().currentUser.email;
     Firebase.firestore()
       .collection("user")
       .doc(user)

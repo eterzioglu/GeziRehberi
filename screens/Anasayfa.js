@@ -4,7 +4,7 @@ import { StyleSheet, Text, View} from 'react-native';
 
 import TabNavigator from '../navigation/TabNavigator';
 
-const Giris =props=> {
+const Anasayfa =(props)=> {
     
   return (
     <View style={styles.container}>
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-export default Giris
+export default Anasayfa;

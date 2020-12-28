@@ -105,7 +105,7 @@ const Flowers = () => {
       trigger: { seconds: 60 * 60* 24000 },
     });
 
-    var user = Firebase.auth().currentUser;
+    var user = Firebase.auth().currentUser.email;
 
 
     const subscriber = Firebase.firestore()

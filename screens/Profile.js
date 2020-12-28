@@ -72,7 +72,8 @@ const styles = StyleSheet.create({
   padding:"15%"
   },
   texttitle:{
-    fontSize:30,
+    fontSize:50,
+    fontWeight:'bold',
     color:colors.green,
     alignSelf:"center",
     paddingTop:"1%"

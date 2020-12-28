@@ -15,15 +15,14 @@ import Firebase from "../config/Firebase";
 import { getImageFromId } from "../utils/api";
 import moment from "moment";
 
-
 console.disableYellowBox = true;
 
 const TodoList = ({ list }) => {
   const [checkbutton, setCheck] = useState(false);
   const [score, setScore] = useState(0);
-  const [currentDate, setCurrentDate] = useState('');
-  var DATE=[];
-  const [date, setdate] = useState('12/27/2020');
+  const [currentDate, setCurrentDate] = useState("");
+  var DATE = [];
+  const [date, setdate] = useState("12/27/2020");
   var id = [
     "152",
     "106",
@@ -37,47 +36,39 @@ const TodoList = ({ list }) => {
     "1068",
   ];
 
-useEffect(()=>{
-  
-  var date = moment()
-  .format('L');
-  setCurrentDate(date);
-  console.log(currentDate)
-  if(date!=currentDate){
+  useEffect(() => {
+    var date = moment().format("L");
+    setCurrentDate(date);
+    console.log(currentDate);
+    if (date != currentDate) {
+      setCheck(false);
+      setdate(currentDate);
 
-    setCheck(false)
-    setdate(currentDate)
+      var user = Firebase.auth().currentUser.email;
 
-    var user = Firebase.auth().currentUser;
-
-    var waterRef = Firebase.firestore()
-    .collection("user")
-    .doc(user)
-    .collection(user)
-    .doc(list.name);
-  return waterRef
-    .update({
-      water: false,
-    })
-    .then(function () {
-      console.log("Document successfully updated!");
-    })
-    .catch(function (error) {
-      // The document probably doesn't exist.
-      console.error("Error updating document: ", error);
-    });
-
-
-
-  }
-
-},[])
+      var waterRef = Firebase.firestore()
+        .collection("user")
+        .doc(user)
+        .collection(user)
+        .doc(list.name);
+      return waterRef
+        .update({
+          water: false,
+        })
+        .then(function () {
+          console.log("Document successfully updated!");
+        })
+        .catch(function (error) {
+          // The document probably doesn't exist.
+          console.error("Error updating document: ", error);
+        });
+    }
+  }, []);
 
   check = () => {
-  if (checkbutton) {
-
+    if (checkbutton) {
       setCheck(false);
-      var user = Firebase.auth().currentUser;
+      var user = Firebase.auth().currentUser.email;
       var waterRef = Firebase.firestore()
         .collection("user")
         .doc(user)
@@ -92,9 +83,7 @@ useEffect(()=>{
         })
         .then(function () {
           setScore(score - 5);
-          var scoreRef = Firebase.firestore()
-            .collection("user")
-            .doc(user);
+          var scoreRef = Firebase.firestore().collection("user").doc(user);
           return scoreRef
             .update({
               Score: score,
@@ -113,6 +102,7 @@ useEffect(()=>{
         });
     } else {
       setCheck(true);
+      var user = Firebase.auth().currentUser.email;
       var waterRef = Firebase.firestore()
         .collection("user")
         .doc(user)
@@ -128,9 +118,7 @@ useEffect(()=>{
         })
         .then(function () {
           setScore(score + 5);
-          var scoreRef = Firebase.firestore()
-            .collection("user")
-            .doc(user);
+          var scoreRef = Firebase.firestore().collection("user").doc(user);
           return scoreRef
             .update({
               Score: score,
@@ -225,5 +213,3 @@ const styles = StyleSheet.create({
 });
 
 export default TodoList;
-
-
