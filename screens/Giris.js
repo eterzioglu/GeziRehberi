@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightPink,
   },
   buttons: {
-    paddingTop:"20%",
+    paddingTop:"5%",
     alignItems: "center",
     justifyContent: "center",
   },
