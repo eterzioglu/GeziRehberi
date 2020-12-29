@@ -70,14 +70,15 @@ const styles = StyleSheet.create({
     padding: "15%",
   },
   texttitle: {
-    fontSize: 40,
+    marginTop:50,
+    fontSize: 50,
     fontWeight: "bold",
     color: colors.green,
     alignSelf: "center",
     paddingTop: "1%",
   },
   textpoint: {
-    fontSize: 50,
+    fontSize: 60,
     fontWeight: "bold",
     color: colors.pink,
     alignSelf: "center",
