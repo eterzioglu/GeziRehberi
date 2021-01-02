@@ -4,9 +4,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  Modal,
   Image,
-  TextInput,
 } from "react-native";
 import colors from "./Colors";
 import { Ionicons } from "../node_modules/@expo/vector-icons";

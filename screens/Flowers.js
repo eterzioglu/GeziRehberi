@@ -19,8 +19,6 @@ import colors from "../components/Colors";
 import TodoList from "../components/TodoList";
 import AddListModal from "../components/AddListModal";
 
-
-
 //disable yellow warnings on EXPO client!
 console.disableYellowBox = true;
 
@@ -65,19 +63,14 @@ Notifications.setNotificationHandler({
   }),
 });
 
-
-
 const Flowers = () => {
   const [loading, setLoading] = useState(true); // Set loading to true on component mount
   const [users, setUsers] = useState([]); // Initial empty array of users
   const [expoPushToken, setExpoPushToken] = useState("");
   const [notification, setNotification] = useState(false);
 
-
-  
   const notificationListener = useRef();
   const responseListener = useRef();
-  
 
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) =>
@@ -102,11 +95,10 @@ const Flowers = () => {
         body: "Please don't forget to water us",
         data: { data: "goes here" },
       },
-      trigger: { seconds: 60 * 60* 24000 },
+      trigger: { seconds: 60 * 60 * 2400 },
     });
 
     var user = Firebase.auth().currentUser.email;
-
 
     const subscriber = Firebase.firestore()
       .collection("user")
@@ -180,7 +172,7 @@ const Flowers = () => {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
